@@ -7,7 +7,7 @@ emacs.
 [[file:screen.png]]
 
 ~cricbuzz.el~ uses extended ~org-mode~ for keeping schedule and scorecards. The
-schedule is written to home directory in ~cricket-schedule.org~ as is added to
+schedule is written to home directory in ~cricket-schedule.org~ and is added to
 the agenda list. *LIVE* and *COMPLETED* cycle as /TODO/ tags. *PROPERTIES*
 drawers keep venue and other descriptions.
 
