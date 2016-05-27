@@ -1,0 +1,19 @@
+#+TITLE: cricbuzz.el
+#+AUTHOR: Abhinav Tushar
+
+Get live cricket scores and scorecards (/not implemented yet/) from [[http://cricbuzz.com][cricbuzz]] in
+emacs.
+
+[[file:screen.png]]
+
+~cricbuzz.el~ uses extended ~org-mode~ for keeping schedule and scorecards. The
+schedule is written to home directory in ~cricket-schedule.org~ as is added to
+the agenda list. *LIVE* and *COMPLETED* cycle as /TODO/ tags. *PROPERTIES*
+drawers keep venue and other descriptions.
+
+** Keybindings
++ In /Index-view/
+  + ~r~ :: refresh
+  + ~RET~ :: open scorecard
++ In /Scorecard-view/
+  + ~r~ :: refresh
