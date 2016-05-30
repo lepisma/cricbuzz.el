@@ -1,8 +1,6 @@
 #+TITLE: cricbuzz.el
 #+AUTHOR: Abhinav Tushar
 
-[[https://travis-ci.org/lepisma/cricbuzz.el][file:https://travis-ci.org/lepisma/cricbuzz.el.svg?branch=master]]
-
 Get live cricket scores and scorecards from [[http://cricbuzz.com][cricbuzz]] in emacs.
 
 [[file:screen.png]]
