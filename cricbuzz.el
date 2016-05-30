@@ -35,6 +35,7 @@
 ;;; Code:
 
 (require 'enlive)
+(require 'org)
 
 (defvar cricbuzz-base-url "http://cricbuzz.com")
 (defvar cricbuzz-live-url (concat cricbuzz-base-url "/cricket-match/live-scores"))
@@ -59,7 +60,7 @@
    "<%Y-%m-%d %a %H:%M>"
    (seconds-to-time
     (/
-     (string-to-int
+     (string-to-number
       (enlive-attr (first (enlive-get-elements-by-class-name match-node "schedule-date")) 'timestamp))
      1000))))
 
