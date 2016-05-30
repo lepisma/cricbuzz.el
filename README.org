@@ -1,19 +1,33 @@
 #+TITLE: cricbuzz.el
 #+AUTHOR: Abhinav Tushar
 
-Get live cricket scores and scorecards (/not implemented yet/) from [[http://cricbuzz.com][cricbuzz]] in
-emacs.
+[[https://travis-ci.org/lepisma/cricbuzz.el][file:https://travis-ci.org/lepisma/cricbuzz.el.svg?branch=master]]
+
+Get live cricket scores and scorecards from [[http://cricbuzz.com][cricbuzz]] in emacs.
 
 [[file:screen.png]]
 
 ~cricbuzz.el~ uses extended ~org-mode~ for keeping schedule and scorecards. The
-schedule is written to home directory in ~cricket-schedule.org~ and is added to
-the agenda list. *LIVE* and *COMPLETED* cycle as /TODO/ tags. *PROPERTIES*
+schedule is written to ~\~cricket-schedule.org~ and is added to
+the agenda list. *LIVE* and *FINISHED* cycle as /TODO/ tags. *PROPERTIES*
 drawers keep venue and other descriptions.
 
+** Usage
++ ~cricbuzz-get-live-scores~ fetches a list of current cricket matches. The
+  schedule is saved at ~\~/cricket-schedule.org~ and is added to
+  ~org-agenda-files~ for the current session. Also works as refresh function for
+  the listing.
+
++ ~cricbuzz-show-scorecard~ displays scorecard for the match at the pointer in
+  match list (index) view.
++ ~cricbuzz-refresh-scorecard~ refreshes the current scorecard view.
+
 ** Keybindings
-+ In /Index-view/
-  + ~r~ :: refresh
-  + ~RET~ :: open scorecard
-+ In /Scorecard-view/
-  + ~r~ :: refresh
+
+|-------+-----------------------+------------------------------|
+| Key   | Mode                  | Function                     |
+|-------+-----------------------+------------------------------|
+| *RET* | ~cricbuzz-index-mode~ | ~cricbuzz-show-scorecard~    |
+| *r*   | ~cricbuzz-index-mode~ | ~cricbuzz-get-live-scores~   |
+| *r*   | ~cricbuzz-score-mode~ | ~cricbuzz-refresh-scorecard~ |
+|-------+-----------------------+------------------------------|
