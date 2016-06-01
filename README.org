@@ -1,7 +1,10 @@
 #+TITLE: cricbuzz.el
 #+AUTHOR: Abhinav Tushar
 
+[[http://stable.melpa.org/#/cricbuzz][file:http://stable.melpa.org/packages/cricbuzz-badge.svg]]
+
 Get live cricket scores and scorecards from [[http://cricbuzz.com][cricbuzz]] in emacs.
+
 
 [[file:screen.png]]
 
