@@ -197,7 +197,6 @@
          (col-size (length header-node))
          (row-nodes (cdr data-nodes))
          (junk-nodes nil))
-    (message (int-to-string col-size))
     (org-table-create (concat (int-to-string col-size) "x1"))
     (cricbuzz-insert-row header-node)
     (org-table-insert-hline t)
