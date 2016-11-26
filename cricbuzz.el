@@ -3,7 +3,7 @@
 ;; Copyright (c) 2016 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <abhinav.tushar.vs@gmail.com>
-;; Version: 0.2
+;; Version: 0.2.4
 ;; Package-Requires: ((enlive "0.0.1"))
 ;; Keywords: cricket, score
 ;; URL: https://github.com/lepisma/cricbuzz.el
@@ -12,7 +12,7 @@
 
 ;; cricbuzz.el displays live cricket scores and match scorecards
 ;; from http://cricbuzz.com
-;; Schedules are saved to ~/cricket-schedule.org and added to org-agenda
+;; Schedules are saved to ~/cricket-schedule.org
 ;; Visit https://github.com/lepisma/cricbuzz.el for additional information
 ;; and usage instructions.
 ;; This file is not a part of GNU Emacs.
@@ -153,7 +153,6 @@
     (goto-char (point-min))
     ;; Save schedule and add to agenda
     (write-region (point-min) (point-max) cricbuzz-schedule-file)
-    (add-to-list 'org-agenda-files cricbuzz-schedule-file)
     (flyspell-mode-off)))
 
 ;; Parse scorecard

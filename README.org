@@ -9,8 +9,8 @@ Get live cricket scores and scorecards from [[http://cricbuzz.com][cricbuzz]] in
 [[file:screen.png]]
 
 ~cricbuzz.el~ uses extended ~org-mode~ for keeping schedule and scorecards. The
-schedule is written to ~\~cricket-schedule.org~ and is added to
-the agenda list. *LIVE* and *FINISHED* cycle as /TODO/ tags. *PROPERTIES*
+schedule is written to ~\~cricket-schedule.org~ +and is added to+
++the agenda list+. *LIVE* and *FINISHED* cycle as /TODO/ tags. *PROPERTIES*
 drawers keep venue and other descriptions.
 
 ** Usage
