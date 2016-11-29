@@ -186,7 +186,6 @@
   "Insert a row of data in table"
   (mapc #'(lambda (row-div)
             (progn
-              (message (enlive-text row-div))
               (org-table-next-field)
               (insert (enlive-text row-div))))
         (-remove-item " " row-node)))
