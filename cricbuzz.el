@@ -145,7 +145,7 @@
     (insert "#+TITLE: Live Cricket Scores\n")
     (insert "#+TODO: LIVE | FINISHED\n\n")
     (insert (format-time-string "Last updated [%Y-%m-%d %a %H:%M] \n"))
-    (insert (concat "~scores via [[" cricbuzz-base-url "][cricbuzz]]~\n\n\n"))
+    (insert (concat "~scores via [[" cricbuzz-base-url "][cricbuzz]]~\n\n"))
     (cricbuzz-index-mode)
     (mapc 'cricbuzz-insert-match
           (enlive-get-elements-by-class-name main-node "cb-mtch-lst"))
@@ -163,7 +163,7 @@
   (insert (concat "#+TITLE: " match-name "\n"))
   (insert (format-time-string "Last updated [%Y-%m-%d %a %H:%M] \n"))
   (insert (concat "~scores via [[" cricbuzz-base-url "][cricbuzz]]~\n"))
-  (insert (concat "[[" match-url "][cricbuzz-url]]\n\n\n"))
+  (insert (concat "[[" match-url "][cricbuzz-url]]\n\n"))
   (insert (concat "*" (upcase match-status) "*\n\n")))
 
 (defun cricbuzz-insert-match-info (left-node)
@@ -180,8 +180,7 @@
                                               " :: "
                                               (enlive-text (fourth info-pair))
                                               "\n")))))
-          info-items)
-    (insert "\n")))
+          info-items)))
 
 (defun cricbuzz-insert-row (row-node)
   "Insert a row of data in table"
@@ -212,7 +211,10 @@
     (goto-char (point-max))
     (insert "\n")
     ;; Insert junk nodes
-    (mapc 'cricbuzz-insert-junk-rows junk-nodes)))
+    (if junk-nodes
+        (progn
+          (mapc 'cricbuzz-insert-junk-rows junk-nodes)
+          (insert "\n")))))
 
 (defun cricbuzz-insert-junk-rows (data-node)
   "Format extra rows in list form"
@@ -235,13 +237,17 @@
 (defun cricbuzz-insert-fow (inning-node)
   "Insert fall of wickets if present"
   (if (equal "Fall of Wickets" (enlive-text (second
-                                             (enlive-direct-children
-                                              inning-node))))
+                                             (enlive-get-elements-by-class-name
+                                              inning-node
+                                              "cb-scrd-sub-hdr"))))
       (progn
         (insert "*** Fall of Wickets\n")
-        (insert (replace-str " " " " (concat (enlive-text (third
-                                                           (enlive-direct-children
-                                                            inning-node))) "\n\n"))))))
+        (insert (replace-str " " " " (enlive-text (first
+                                                   (enlive-get-elements-by-class-name
+                                                    inning-node
+                                                    "cb-col-rt")))))
+        (fill-paragraph)
+        (insert "\n\n"))))
 
 (defun cricbuzz-insert-innings (inning-node)
   "Insert an inning"
@@ -283,8 +289,7 @@
     (cricbuzz-insert-match-info left-node)
     (setq buffer-read-only t)
     (switch-to-buffer buffer)
-    (goto-char (point-min))
-    (flyspell-mode-off)))
+    (goto-char (point-min))))
 
 (defun cricbuzz-get-last-url (position)
   "Get last cricbuzz-url searching backward from given position"
