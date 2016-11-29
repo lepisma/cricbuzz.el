@@ -160,7 +160,7 @@
 
 (defun cricbuzz-insert-scorecard-preamble (match-name match-url match-status)
   "Insert headers for scorecard"
-  (insert (concat "#+TITLE: " match-name "\n"))
+  (insert (concat "#+TITLE: " match-name "\n\n"))
   (insert (format-time-string "Last updated [%Y-%m-%d %a %H:%M] \n"))
   (insert (concat "~scores via [[" cricbuzz-base-url "][cricbuzz]]~\n"))
   (insert (concat "[[" match-url "][cricbuzz-url]]\n\n"))
@@ -186,6 +186,7 @@
   "Insert a row of data in table"
   (mapc #'(lambda (row-div)
             (progn
+              (message (enlive-text row-div))
               (org-table-next-field)
               (insert (enlive-text row-div))))
         (-remove-item " " row-node)))
@@ -289,7 +290,8 @@
     (cricbuzz-insert-match-info left-node)
     (setq buffer-read-only t)
     (switch-to-buffer buffer)
-    (goto-char (point-min))))
+    (goto-char (point-min))
+    (font-lock-fontify-buffer)))
 
 (defun cricbuzz-get-last-url (position)
   "Get last cricbuzz-url searching backward from given position"
