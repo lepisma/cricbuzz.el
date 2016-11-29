@@ -4,7 +4,7 @@
 
 ;; Author: Abhinav Tushar <abhinav.tushar.vs@gmail.com>
 ;; Version: 0.2.4
-;; Package-Requires: ((enlive "0.0.1"))
+;; Package-Requires: ((enlive "0.0.1") (dash "2.13.0"))
 ;; Keywords: cricket, score
 ;; URL: https://github.com/lepisma/cricbuzz.el
 
@@ -36,6 +36,7 @@
 
 (require 'enlive)
 (require 'org)
+(require 'dash)
 
 (defvar cricbuzz-base-url "http://cricbuzz.com")
 (defvar cricbuzz-live-url (concat cricbuzz-base-url "/cricket-match/live-scores"))
@@ -175,9 +176,9 @@
               (let ((info-pair (enlive-direct-children info-item)))
                 (insert (replace-str " " " " (concat
                                               "+ "
-                                              (enlive-text (first info-pair))
-                                              " :: "
                                               (enlive-text (second info-pair))
+                                              " :: "
+                                              (enlive-text (fourth info-pair))
                                               "\n")))))
           info-items)
     (insert "\n")))
@@ -188,13 +189,13 @@
             (progn
               (org-table-next-field)
               (insert (enlive-text row-div))))
-        row-node))
+        (-remove-item " " row-node)))
 
 (defun cricbuzz-insert-table (data-nodes)
   "Insert org-table using given data"
-  (let* ((header-node (first data-nodes))
-         (col-size (length header-node))
-         (row-nodes (cdr data-nodes))
+  (let* ((header-node (second data-nodes))
+         (col-size (length (-remove-item " " header-node)))
+         (row-nodes (cdr (cdr data-nodes)))
          (junk-nodes nil))
     (org-table-create (concat (int-to-string col-size) "x1"))
     (cricbuzz-insert-row header-node)
@@ -205,7 +206,7 @@
               (if (eq col-size (length row-node))
                   (cricbuzz-insert-row row-node)
                 (push row-node junk-nodes)))
-          row-nodes)
+          (--map (-remove-item " " it) row-nodes))
     (org-table-insert-hline)
     (org-table-align)
     (goto-char (point-max))
@@ -224,12 +225,12 @@
 (defun cricbuzz-insert-batting (batting-node)
   "Insert batting card"
   (insert "** Batting\n\n")
-  (cricbuzz-insert-table (mapcar 'enlive-direct-children (cdr batting-node))))
+  (cricbuzz-insert-table (-non-nil (mapcar 'enlive-direct-children (cdr batting-node)))))
 
 (defun cricbuzz-insert-bowling (bowling-node)
   "Insert bowling card"
   (insert "** Bowling\n\n")
-  (cricbuzz-insert-table (mapcar 'enlive-direct-children bowling-node)))
+  (cricbuzz-insert-table (-non-nil (mapcar 'enlive-direct-children bowling-node))))
 
 (defun cricbuzz-insert-fow (inning-node)
   "Insert fall of wickets if present"
@@ -245,11 +246,11 @@
 (defun cricbuzz-insert-innings (inning-node)
   "Insert an inning"
   (insert (concat "* "
-                  (enlive-text (first
-                                (enlive-direct-children
-                                 (first (enlive-get-elements-by-class-name
-                                         inning-node
-                                         "cb-scrd-hdr-rw")))))
+                  (enlive-text
+                   (fourth
+                    (first (enlive-get-elements-by-class-name
+                            inning-node
+                            "cb-scrd-hdr-rw"))))
                   "\n\n"))
   (let ((tables (enlive-get-elements-by-class-name inning-node "cb-ltst-wgt-hdr")))
     (cricbuzz-insert-batting (enlive-direct-children (first tables)))
@@ -262,7 +263,7 @@
          (left-node (first (enlive-get-elements-by-class-name
                             main-node
                             "cb-scrd-lft-col")))
-         (match-name (enlive-text (second
+         (match-name (enlive-text (fourth
                                    (enlive-direct-children
                                     (first
                                      (enlive-get-elements-by-class-name
