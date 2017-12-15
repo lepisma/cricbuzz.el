@@ -9,26 +9,25 @@ Get live cricket scores and scorecards from [[http://cricbuzz.com][cricbuzz]] in
 [[file:screen.png]]
 
 ~cricbuzz.el~ uses extended ~org-mode~ for keeping schedule and scorecards. The
-schedule is written to ~\~cricket-schedule.org~ +and is added to+
-+the agenda list+. *LIVE* and *FINISHED* cycle as /TODO/ tags. *PROPERTIES*
-drawers keep venue and other descriptions.
+schedule is written to ~$HOME/.cricbuzz.el/cricbuzz-index.cbi~ (change variable
+~cricbuzz-cache-dir~ to change this directory). Game scorecards are kept in
+~cricbuzz-cache-dir~ with name like ~<match-name>.cb~. *LIVE* and *FINISHED* cycle as
+/TODO/ tags. *PROPERTIES* drawers keep venue and other descriptions.
 
 ** Usage
-+ ~cricbuzz-get-live-scores~ fetches a list of current cricket matches. The
-  schedule is saved at ~\~/cricket-schedule.org~ and is added to
-  ~org-agenda-files~ for the current session. Also works as refresh function for
-  the listing.
-
++ ~cricbuzz-get-live-scores~ fetches a list of current cricket matches.
 + ~cricbuzz-show-scorecard~ displays scorecard for the match at the pointer in
   match list (index) view.
 + ~cricbuzz-refresh-scorecard~ refreshes the current scorecard view.
 
 ** Keybindings
 
-|-------+-----------------------+------------------------------|
-| Key   | Mode                  | Function                     |
-|-------+-----------------------+------------------------------|
+|-----+---------------------+----------------------------|
+| Key | Mode                | Function                   |
+|-----+---------------------+----------------------------|
 | *RET* | ~cricbuzz-index-mode~ | ~cricbuzz-show-scorecard~    |
 | *r*   | ~cricbuzz-index-mode~ | ~cricbuzz-get-live-scores~   |
 | *r*   | ~cricbuzz-score-mode~ | ~cricbuzz-refresh-scorecard~ |
-|-------+-----------------------+------------------------------|
+| q   | ~cricbuzz-index-mode~ | ~cricbuzz-kill-buffer~       |
+| q   | ~cricbuzz-score-mode~ | ~cricbuzz-kill-buffer~       |
+|-----+---------------------+----------------------------|
