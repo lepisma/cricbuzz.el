@@ -28,6 +28,6 @@ schedule is written to ~$HOME/.cricbuzz.el/cricbuzz-index.cbi~ (change variable
 | *RET* | ~cricbuzz-index-mode~ | ~cricbuzz-show-scorecard~    |
 | *r*   | ~cricbuzz-index-mode~ | ~cricbuzz-get-live-scores~   |
 | *r*   | ~cricbuzz-score-mode~ | ~cricbuzz-refresh-scorecard~ |
-| q   | ~cricbuzz-index-mode~ | ~cricbuzz-kill-buffer~       |
-| q   | ~cricbuzz-score-mode~ | ~cricbuzz-kill-buffer~       |
+| *q*   | ~cricbuzz-index-mode~ | ~cricbuzz-kill-buffer~       |
+| *q*   | ~cricbuzz-score-mode~ | ~cricbuzz-kill-buffer~       |
 |-----+---------------------+----------------------------|
