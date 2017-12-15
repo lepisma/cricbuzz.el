@@ -371,6 +371,7 @@
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cb\\'" . cricbuzz-score-mode))
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cbi\\'" . cricbuzz-index-mode))
 
 (provide 'cricbuzz)
