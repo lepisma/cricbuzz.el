@@ -9,9 +9,9 @@ Get live cricket scores and scorecards from [[http://cricbuzz.com][cricbuzz]] in
 [[file:screen.png]]
 
 ~cricbuzz.el~ uses extended ~org-mode~ for keeping schedule and scorecards. The
-schedule is written to ~$HOME/.cricbuzz.el/cricbuzz-index.cbi~ (change variable
-~cricbuzz-cache-dir~ to change this directory). Game scorecards are kept in
-~cricbuzz-cache-dir~ with name like ~<match-name>.cb~. *LIVE* and *FINISHED* cycle as
+schedule is written to ~$HOME/.cache/cricbuzz.el/cricbuzz-index.cbi~ (change
+variable ~cricbuzz-cache-dir~ to change this directory). Game scorecards are kept
+in ~cricbuzz-cache-dir~ with name like ~<match-name>.cb~. *LIVE* and *FINISHED* cycle as
 /TODO/ tags. *PROPERTIES* drawers keep venue and other descriptions.
 
 ** Usage
