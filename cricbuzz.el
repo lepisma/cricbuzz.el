@@ -360,11 +360,13 @@
     map)
   "Keymap for cricbuzz-index major mode")
 
+;;;###autoload;
 (define-derived-mode cricbuzz-index-mode org-mode
   "Cricbuzz-Index"
   "Major mode for cricbuzz live scores"
   (setq buffer-read-only t))
 
+;;;###autoload;
 (define-derived-mode cricbuzz-score-mode org-mode
   "Cricbuzz-Score"
   "Major mode for viewing cricbuzz scorecards"
