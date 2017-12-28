@@ -3,7 +3,7 @@
 ;; Copyright (c) 2016 Abhinav Tushar
 
 ;; Author: Abhinav Tushar <abhinav.tushar.vs@gmail.com>
-;; Version: 0.3.4
+;; Version: 0.3.5
 ;; Package-Requires: ((enlive "0.0.1") (f "0.19.0") (dash "2.13.0") (s "1.11.0"))
 ;; Keywords: cricket, score
 ;; URL: https://github.com/lepisma/cricbuzz.el
