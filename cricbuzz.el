@@ -338,7 +338,7 @@
 (defun cricbuzz-refresh-scorecard ()
   "Refresh current scorecard"
   (interactive)
-  (cricbuzz-insert-scorecard (cricbuzz-get-last-url (point))))
+  (cricbuzz-insert-scorecard (cricbuzz-get-last-url (point-max))))
 
 (defun cricbuzz-kill-buffer ()
   "Close current buffer"
