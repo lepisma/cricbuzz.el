@@ -15,6 +15,11 @@ in ~cricbuzz-cache-dir~ with name like ~<match-name>.cb~. *LIVE* and *FINISHED* 
 /TODO/ tags. *PROPERTIES* drawers keep venue and other descriptions.
 
 ** Usage
+
+#+begin_quote
+Development for this project has moved to sourcehut [[https://git.sr.ht/~lepisma/cricbuzz.el][here]]. This repository is now in a read-only state.
+#+end_quote
+
 + ~cricbuzz-get-live-scores~ fetches a list of current cricket matches.
 + ~cricbuzz-show-scorecard~ displays scorecard for the match at the pointer in
   match list (index) view.
